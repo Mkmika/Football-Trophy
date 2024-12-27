@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../dist/output.css">   
+    <title>Football Trophy - Jeu de Football</title>
+</head>
+<body class="bg-[#213421] text-white h-screen flex items-center justify-center">
+
+    <div class="grid grid-cols-4 gap-2 w-full max-w-5xl h-full p-4">
+       
+        <div class="col-span-3 flex justify-center items-center">
+            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg shadow-lg"></div>     
+            <div class="relative bg-[#0d2f28] w-1 max-w-md h-[500px]"></div>
+            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg "></div>
+            <div class="relative bg-[#0d2f28] w-1 max-w-md h-[500px]"></div>
+            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg shadow-lg"></div>
+        </div>
+        
+                
+
+        <!-- Panneau latéral -->
+        <div class="bg-[#0d2f28] p-4 rounded-lg flex flex-col justify-between w-[250px] h-full fixed top-0 right-0 font-sans">
+            <div>
+                <h3 class="text-lg font-bold text-start mb-2 ml-5  ">Score : <span id="score">0</span></h3>
+                <div class="flex flex-col fixed top-15 right-5">
+                    <button id="startGame" class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200 ">
+                        Jouer
+                    </button>
+                    <button id="pauseGame" class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
+                        Pause
+                    </button>
+                    <button id="playGame" class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
+                        Play
+                    </button>
+                    <button id="highScore"   class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
+                        Meilleur Score
+                    </button>
+                    <button id="toggleSound"  class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
+                        Activer/Désactiver le son
+                    </button>
+                    <button id="help"  class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
+                        Aide
+                    </button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <script src="./../src/script.js "></script>
+</body>
+</html>

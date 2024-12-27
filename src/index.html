@@ -12,9 +12,14 @@
     <div class="grid grid-cols-4 gap-2 w-full max-w-5xl h-full p-4">
        
         <div class="col-span-3 flex justify-center items-center">
-            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg shadow-lg"></div>     
+            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg shadow-lg">
+                <img class="text-white " src="/ui_assets/ball.svg" alt="">
+               
+            </div>     
             <div class="relative bg-[#0d2f28] w-1 max-w-md h-[500px]"></div>
-            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg "></div>
+            <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg ">
+                <img src="/ui_assets/goal-keeper.svg" alt="">
+            </div>
             <div class="relative bg-[#0d2f28] w-1 max-w-md h-[500px]"></div>
             <div class="relative bg-[#2b382c] w-24 max-w-md h-[500px] rounded-lg shadow-lg"></div>
         </div>
@@ -28,6 +33,7 @@
                 <div class="flex flex-col fixed top-15 right-5">
                     <button id="startGame" class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200 ">
                         Jouer
+                       
                     </button>
                     <button id="pauseGame" class="w-48 bg-[#213421] py-2 my-1 rounded hover:border hover:border-green-400 focus:border focus:border-green-400 transition duration-200">
                         Pause
@@ -48,6 +54,16 @@
                
             </div>
         </div>
+
+                <!-- Popup Game Over -->
+        <div id="gameOverPopup" class="hidden fixed inset-0 bg-gray-700 bg-opacity-50  items-center justify-center">
+            <div class="bg-[#2b382c] p-6 rounded-lg text-white text-center">
+                <h2 class="text-2xl font-bold">Game Over</h2>
+                <p id="gameOverMessage" class="mt-2">Le jeu est terminé !</p>
+                <button id="restartButton" class="mt-4 bg-green-500 py-2 px-4 rounded">OK</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="./../src/script.js "></script>

@@ -1,30 +1,6 @@
 # Football Trophy
 
 ## Description
-    Titre : Créer une Réplique d'une Page Web
-
-    Objectif : Recréez une page web similaire à Football Trophy en utilisant uniquement HTML, CSS, et JavaScript (ou Typescript), et livrez le projet en 24 heures.
-
-    Spécifications :
-
-    Structure : La page doit respecter l'organisation et le design global (disposition, images, titres, contenu).
-    Styles : Reproduisez le style, en respectant les couleurs, typographies, et animations basiques.
-    Fonctionnalité :
-    Aucune utilisation de frameworks (pas de React, Angular, Vue).
-    Délivrable :
-    Fournissez un fichier ZIP contenant le projet complet (code, images, etc.).
-    Ajoutez un README avec des explications sur la structure et les instructions pour ouvrir/tester la page.
-    Hints:
-    Vous trouverez en fichier joint le style de votre page (vous pouvez le modifier au besoin).
-    Vous pouvez utiliser un timer pour créer une game loop
-    Manipuler la game loop pour les fonctionnalités Play/Pause
-    Critères d'évaluation :
-
-    Respect du design.
-    Qualité et clarté du code.
-    Créativité dans l'implémentation des interactions.
-    Respect du délai.
-
 ---
 
 ## Problématiques Rencontrées

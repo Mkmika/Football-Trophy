@@ -1,60 +1,89 @@
-// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    // Récupération des éléments du DOM
+    const ballImage = document.getElementById('ballImage');
+    const startGameButton = document.getElementById('startGame');
+    const playGameButton = document.getElementById('playGame');
+    const scoreElement = document.getElementById('score');
+    const gameOverPopup = document.getElementById('gameOverPopup');
+    const gameOverMessage = document.getElementById('gameOverMessage');
+    const restartButton = document.getElementById('restartButton');
 
-// Sélecteurs
-const scoreElement = document.getElementById('score');
-const startButton = document.getElementById('start-btn');
-const pauseButton = document.getElementById('pause-btn');
-const playButton = document.getElementById('play-btn');
-const player = document.getElementById('player');
-const ball = document.getElementById('ball');
+    // Variables du jeu
+    let score = 0;
+    let gamePlaying = false;
+    let balls = []; // Liste pour gérer les balles
+    let gameInterval;
 
-let score = 0;
-let gameInterval;
-
-// Fonction pour démarrer le jeu
-startButton.addEventListener('click', () => {
-    score = 0;
-    scoreElement.textContent = score;
-    startGame();
-});
-
-// Fonction pour mettre en pause le jeu
-pauseButton.addEventListener('click', () => {
-    clearInterval(gameInterval);
-});
-
-// Fonction pour reprendre le jeu
-playButton.addEventListener('click', () => {
-    startGame();
-});
-
-// Fonction principale du jeu
-function startGame() {
-    gameInterval = setInterval(() => {
-        const ballY = parseInt(window.getComputedStyle(ball).top);
-        const playerY = parseInt(window.getComputedStyle(player).top);
-
-        // Simulation simple du mouvement de la balle
-        ball.style.top = (ballY + 5) + 'px';
-
-        // Si la balle atteint le bas, réinitialise la position
-        if (ballY > 400) {
-            ball.style.top = '50px';
-            score++;
-            scoreElement.textContent = score;
+    // Fonction pour démarrer le jeu
+    startGameButton.addEventListener('click', () => {
+        if (!gamePlaying) {
+            // Afficher le ballon et le placer en bas au centre
+            ballImage.style.display = 'block';
+            ballImage.style.position = 'absolute';
+            ballImage.style.bottom = '0';
+            ballImage.style.left = '50%';
+            ballImage.style.transform = 'translateX(-50%)';
         }
-    }, 50);
-}
-document.getElementById("startGame").addEventListener("click", function() {
-    // Logique pour démarrer le jeu
-    document.getElementById("score").innerText = "0";
-    // Mettre à jour les autres boutons
-});
+    });
 
-document.getElementById("pauseGame").addEventListener("click", function() {
-    // Logique pour mettre en pause
-});
+    // Fonction pour commencer à jouer
+    playGameButton.addEventListener('click', () => {
+        if (gamePlaying) return;
 
-document.getElementById("playGame").addEventListener("click", function() {
-    // Logique pour reprendre le jeu
+        gamePlaying = true;
+
+        // Initialiser les balles et démarrer le mouvement
+        balls = [
+            createBall(0), // Première colonne
+            createBall(1), // Deuxième colonne
+            createBall(2), // Troisième colonne
+        ];
+
+        // Animation des balles
+        gameInterval = setInterval(moveBalls, 20);
+    });
+
+    // Créer une balle et la placer dans la colonne
+    function createBall(columnIndex) {
+        const ball = document.createElement('img');
+        ball.src = '/ui_assets/ball.svg';
+        ball.style.position = 'absolute';
+        ball.style.top = '0px';
+        ball.style.left = `${columnIndex * 100 + 50}%`;
+        ball.style.transform = 'translateX(-50%)';
+        ball.classList.add('ball');
+        document.body.appendChild(ball);
+        return ball;
+    }
+
+    // Déplacer les balles
+    function moveBalls() {
+        balls.forEach((ball, index) => {
+            let currentTop = parseInt(ball.style.top, 10);
+            ball.style.top = `${currentTop + 2}px`; // Vitesse de déplacement
+
+            // Si la balle atteint le bas, afficher Game Over
+            if (currentTop + 2 >= window.innerHeight - 100) { // 100px est l'espace réservé au bas de l'écran
+                clearInterval(gameInterval); // Arrêter l'intervalle
+                showGameOver();
+            }
+        });
+    }
+
+    // Afficher la popup Game Over
+    function showGameOver() {
+        gameOverMessage.textContent = `Le jeu est terminé ! Votre score est : ${score}`;
+        gameOverPopup.classList.remove('hidden');
+    }
+
+    // Fonction pour recommencer le jeu
+    restartButton.addEventListener('click', () => {
+        // Réinitialiser l'état du jeu
+        balls.forEach(ball => ball.remove()); // Supprimer les balles existantes
+        score = 0;
+        scoreElement.textContent = score;
+        gameOverPopup.classList.add('hidden'); // Cacher la popup
+        gamePlaying = false;
+        balls = [];
+    });
 });

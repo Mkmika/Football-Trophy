@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Récupération des éléments du DOM
+   
     const ballImage = document.getElementById('ballImage');
     const startGameButton = document.getElementById('startGame');
     const playGameButton = document.getElementById('playGame');
@@ -11,13 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variables du jeu
     let score = 0;
     let gamePlaying = false;
-    let balls = []; // Liste pour gérer les balles
+    let balls = [];
     let gameInterval;
 
-    // Fonction pour démarrer le jeu
     startGameButton.addEventListener('click', () => {
         if (!gamePlaying) {
-            // Afficher le ballon et le placer en bas au centre
+           
             ballImage.style.display = 'block';
             ballImage.style.position = 'absolute';
             ballImage.style.bottom = '0';
@@ -26,24 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fonction pour commencer à jouer
+    
     playGameButton.addEventListener('click', () => {
         if (gamePlaying) return;
 
         gamePlaying = true;
 
-        // Initialiser les balles et démarrer le mouvement
+      
         balls = [
-            createBall(0), // Première colonne
-            createBall(1), // Deuxième colonne
-            createBall(2), // Troisième colonne
+            createBall(0), 
+            createBall(1), 
+            createBall(2),
         ];
 
-        // Animation des balles
         gameInterval = setInterval(moveBalls, 20);
     });
 
-    // Créer une balle et la placer dans la colonne
     function createBall(columnIndex) {
         const ball = document.createElement('img');
         ball.src = '/ui_assets/ball.svg';
@@ -56,33 +53,31 @@ document.addEventListener('DOMContentLoaded', () => {
         return ball;
     }
 
-    // Déplacer les balles
     function moveBalls() {
         balls.forEach((ball, index) => {
             let currentTop = parseInt(ball.style.top, 10);
-            ball.style.top = `${currentTop + 2}px`; // Vitesse de déplacement
+            ball.style.top = `${currentTop + 2}px`; 
 
-            // Si la balle atteint le bas, afficher Game Over
-            if (currentTop + 2 >= window.innerHeight - 100) { // 100px est l'espace réservé au bas de l'écran
-                clearInterval(gameInterval); // Arrêter l'intervalle
+            if (currentTop + 2 >= window.innerHeight - 100) {
+                clearInterval(gameInterval); 
                 showGameOver();
             }
         });
     }
 
-    // Afficher la popup Game Over
+ 
     function showGameOver() {
         gameOverMessage.textContent = `Le jeu est terminé ! Votre score est : ${score}`;
         gameOverPopup.classList.remove('hidden');
     }
 
-    // Fonction pour recommencer le jeu
+    
     restartButton.addEventListener('click', () => {
         // Réinitialiser l'état du jeu
-        balls.forEach(ball => ball.remove()); // Supprimer les balles existantes
+        balls.forEach(ball => ball.remove()); 
         score = 0;
         scoreElement.textContent = score;
-        gameOverPopup.classList.add('hidden'); // Cacher la popup
+        gameOverPopup.classList.add('hidden'); 
         gamePlaying = false;
         balls = [];
     });
